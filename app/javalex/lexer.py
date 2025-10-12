@@ -172,6 +172,8 @@ class Lexer:
         cs = self.cs
         start_line, start_col = cs.line, cs.col
         ch = cs.peek()
+        if ch == "." and cs.peek(1).isdigit():
+            return self._scan_number()
         if ch in SEPARATORS:
             cs.advance()
             return Token(TokenType.SEPARATOR, ch, start_line, start_col)
@@ -180,8 +182,6 @@ class Lexer:
                 for _ in op:
                     cs.advance()
                 return Token(TokenType.OPERATOR, op, start_line, start_col)
-        if ch == "." and cs.peek(1).isdigit():
-            return self._scan_number()
         raise LexError(
             f"Неизвестный символ/оператор: {repr(ch)}", start_line, start_col
         )
