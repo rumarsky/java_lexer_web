@@ -6,8 +6,8 @@ def test_line_comment_skipped_by_default():
     kinds = [t.type for t in toks]
     assert TokenType.COMMENT not in kinds
 
-def test_keep_comments_returns_comment_tokens():
-    toks = list(Lexer("a// cmt\nb", keep_comments=True).tokens())
+def test_keepСomments_returns_comment_tokens():
+    toks = list(Lexer("a// cmt\nb", keepСomments=True).tokens())
     kinds = [t.type for t in toks]
     assert TokenType.COMMENT in kinds
 

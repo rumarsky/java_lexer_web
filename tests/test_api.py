@@ -4,7 +4,7 @@ def test_health(client):
     assert r.json().get("status") == "ok"
 
 def test_api_lex_success(client):
-    payload = {"code": "int x=5;", "keep_comments": False}
+    payload = {"code": "int x=5;", "keepСomments": False}
     r = client.post("/api/lex", json=payload)
     assert r.status_code == 200
     data = r.json()
@@ -13,7 +13,7 @@ def test_api_lex_success(client):
 
 def test_api_lex_error_422(client):
     # незакрытый комментарий
-    payload = {"code": "/* oops", "keep_comments": False}
+    payload = {"code": "/* oops", "keepСomments": False}
     r = client.post("/api/lex", json=payload)
     assert r.status_code == 422
     detail = r.json()["detail"]

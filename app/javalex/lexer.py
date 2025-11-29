@@ -16,9 +16,9 @@ from .charstream import CharStream
 
 
 class Lexer:
-    def __init__(self, text: str, keep_comments: bool = False):
+    def __init__(self, text: str, keepСomments: bool = False):
         self.cs = CharStream(text)
-        self.keep_comments = keep_comments
+        self.keepСomments = keepСomments
         self._ops_sorted = sorted(OPERATORS, key=len, reverse=True)
 
     # -------- helpers --------
@@ -37,7 +37,7 @@ class Lexer:
                 start_line, start_col = cs.line, cs.col - 2
                 while not cs.eof() and cs.peek() != "\n":
                     cs.advance()
-                if self.keep_comments:
+                if self.keepСomments:
                     return Token(TokenType.COMMENT, "//", start_line, start_col)
                 continue
             if cs.match("/*"):
@@ -50,7 +50,7 @@ class Lexer:
                     )
                 cs.advance()
                 cs.advance()  # */
-                if self.keep_comments:
+                if self.keepСomments:
                     return Token(TokenType.COMMENT, "/* */", start_line, start_col)
                 continue
             break
@@ -192,7 +192,7 @@ class Lexer:
         cs = self.cs
         while not cs.eof():
             com = self._skip_ws_and_comments()
-            if com and self.keep_comments:
+            if com and self.keepСomments:
                 yield com
                 continue
             if cs.eof():

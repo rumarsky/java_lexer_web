@@ -3,7 +3,7 @@ from typing import List
 
 class LexRequest(BaseModel):
     code: str = Field(..., description="Java source")
-    keep_comments: bool = Field(False, description="Return comments as tokens")
+    keepСomments: bool = Field(False, description="Return comments as tokens")
 
 class TokenOut(BaseModel):
     type: str

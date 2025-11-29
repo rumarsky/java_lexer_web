@@ -8,7 +8,7 @@ router = APIRouter(prefix="/api/lex", tags=["lex"])
 @router.post("", response_model=LexResponse)
 def lex(req: LexRequest) -> LexResponse:
     try:
-        lx = Lexer(req.code, keep_comments=req.keep_comments)
+        lx = Lexer(req.code, keepСomments=req.keepСomments)
         toks = [TokenOut(**t.to_dict()) for t in lx.tokens()]
         return LexResponse(tokens=toks)
     except LexError as e:

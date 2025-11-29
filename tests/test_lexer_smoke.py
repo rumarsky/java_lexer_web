@@ -1,7 +1,7 @@
 from app.javalex import Lexer, TokenType
 
 def lex_all(src: str, keep=False):
-    return list(Lexer(src, keep_comments=keep).tokens())
+    return list(Lexer(src, keepСomments=keep).tokens())
 
 def test_basic_tokens_order():
     toks = lex_all("int x=5;")
